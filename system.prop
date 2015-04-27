@@ -66,6 +66,7 @@ persist.sys.purgeable_assets=1
 ro.lockscreen.secdiscard=false
 
 # Display
+debug.cpurend.vsync=false
 debug.hwui.use_buffer_age=false
 debug.sf.disable_backpressure=1
 debug.sf.latch_unsignaled=1
