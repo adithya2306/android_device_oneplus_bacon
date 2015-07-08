@@ -5861,7 +5861,7 @@ int QCameraParameters::getAutoFlickerMode()
       Currently setting it to default    */
     char prop[PROPERTY_VALUE_MAX];
     memset(prop, 0, sizeof(prop));
-    property_get("persist.camera.set.afd", prop, "3");
+    property_get("persist.camera.set.afd", prop, "4");
     return atoi(prop);
 }
 
