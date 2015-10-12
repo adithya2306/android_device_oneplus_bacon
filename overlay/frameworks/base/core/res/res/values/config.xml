@@ -409,4 +409,7 @@
         <item>LPP_PROFILE=0</item>
         <item>A_GLONASS_POS_PROTOCOL_SELECT=0</item>
     </string-array>
+
+    <!-- Enable doze powersaving mode -->
+    <bool name="config_enableAutoPowerModes">true</bool>
 </resources>
