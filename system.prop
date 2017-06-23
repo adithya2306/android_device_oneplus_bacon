@@ -113,6 +113,7 @@ ro.gps.agps_provider=1
 media.aac_51_output_enabled=true
 mm.enable.smoothstreaming=true
 persist.media.treble_omx=false
+ro.config.media_vol_steps=25
 
 # Perf
 ro.qualcomm.perf.cores_online=2
