@@ -23,6 +23,9 @@ on init
     # Support legacy paths
     symlink /sdcard /storage/sdcard0
 
+    # NFC: Use HAL compatible node
+    symlink /dev/pn544 /dev/pn54x
+
 on post-fs-data
     # Torch
     chown system camera /sys/class/leds/torch-light/brightness
