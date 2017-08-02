@@ -36,6 +36,10 @@ ro.qualcomm.bluetooth.opp=true
 ro.qualcomm.bluetooth.pbap=true
 ro.qualcomm.bt.hci_transport=smd
 
+# Boot
+ro.build.shutdown_timeout=0
+sys.vendor.shutdown.waittime=500
+
 # CABL
 ro.qualcomm.cabl=0
 
