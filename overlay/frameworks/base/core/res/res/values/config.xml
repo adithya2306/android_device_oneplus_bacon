@@ -409,4 +409,7 @@
         <item>LPP_PROFILE=0</item>
         <item>A_GLONASS_POS_PROTOCOL_SELECT=0</item>
     </string-array>
+
+    <!-- Flag indicating which package name can access the persistent data partition -->
+    <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 </resources>
