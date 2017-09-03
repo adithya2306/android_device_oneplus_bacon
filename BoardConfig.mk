@@ -161,6 +161,10 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 include device/qcom/sepolicy-legacy/sepolicy.mk
 
+# Shims
+TARGET_LD_SHIM_LIBS += \
+    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
+
 # Shipping API
 PRODUCT_SHIPPING_API_LEVEL := 19
 
