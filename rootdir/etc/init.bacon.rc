@@ -25,6 +25,7 @@ on init
 
     # NFC: Use HAL compatible node
     symlink /dev/pn544 /dev/pn54x
+    chown nfc nfc /dev/pn54x
 
 on post-fs-data
     # Torch
