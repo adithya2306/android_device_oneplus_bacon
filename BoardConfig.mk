@@ -163,7 +163,8 @@ include device/qcom/sepolicy-legacy/sepolicy.mk
 
 # Shims
 TARGET_LD_SHIM_LIBS += \
-    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
+    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so \
+    /system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so
 
 # Shipping API
 PRODUCT_SHIPPING_API_LEVEL := 19
