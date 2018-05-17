@@ -125,6 +125,12 @@ ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.qti.am.reschedule_service=true
 ro.vendor.qti.sys.fw.bservice_enable=true
 
+# Play store
+ro.com.google.clientidbase.am=android-oneplus
+ro.com.google.clientidbase.gmm=android-oneplus
+ro.com.google.clientidbase.ms=android-oneplus
+ro.com.google.clientidbase.yt=android-oneplus
+
 # Radio
 persist.data.netmgrd.qos.enable=true
 persist.data.qmi.adb_logmask=0
