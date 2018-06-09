@@ -39,3 +39,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="bacon-user 6.0.1 MHC19Q ZNH2KAS1KN release-keys"
 
 BUILD_FINGERPRINT := oneplus/bacon/A0001:6.0.1/MHC19Q/ZNH2KAS1KN:user/release-keys
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2016-09-01
