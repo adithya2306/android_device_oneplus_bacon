@@ -39,3 +39,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="bacon-user 5.0.2 LRX22G YNG1TAS0YL release-keys"
 
 BUILD_FINGERPRINT := oneplus/bacon/A0001:5.0.2/LRX22G/YNG1TAS0YL:user/release-keys
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2016-09-01
