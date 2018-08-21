@@ -2,6 +2,19 @@
 # system.prop for bacon
 #
 
+# Audio
+af.fast_track_multiplier=1
+audio.deep_buffer.media=true
+audio.offload.pcm.16bit.enable=true
+audio.offload.pcm.24bit.enable=true
+audio.offload.video=true
+persist.vendor.audio.fluence.voicecall=true
+ro.vendor.audio.sdk.fluencetype=fluence
+vendor.audio_hal.period_size=192
+vendor.audio.offload.buffer.size.kb=32
+vendor.audio.offload.gapless.enabled=true
+vendor.audio.offload.multiple.enabled=false
+
 # Bionic
 ro.bionic.ld.warning=0
 
@@ -67,20 +80,9 @@ persist.gps.qc_nlp_in_use=0
 ro.gps.agps_provider=1
 
 # Media
-af.fast_track_multiplier=1
-audio.deep_buffer.media=true
-audio.offload.buffer.size.kb=32
-audio.offload.gapless.enabled=true
-audio.offload.multiple.enabled=false
-audio.offload.pcm.16bit.enable=true
-audio.offload.pcm.24bit.enable=true
-audio.offload.video=true
-audio_hal.period_size=192
 media.aac_51_output_enabled=true
 mm.enable.smoothstreaming=true
-persist.audio.fluence.voicecall=true
 persist.media.treble_omx=false
-ro.qc.sdk.audio.fluencetype=fluence
 
 # Perf
 ro.qualcomm.perf.cores_online=2
