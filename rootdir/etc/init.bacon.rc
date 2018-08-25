@@ -225,8 +225,11 @@ on post-fs-data
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
-    # bluetooth
+    # Create directory for bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+
+    # Ensure .bt_nv.bin is owned by bluetooth
+    chown bluetooth bluetooth /persist/.bt_nv.bin
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
