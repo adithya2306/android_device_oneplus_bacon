@@ -72,6 +72,7 @@ TARGET_USE_COMPAT_GRALLOC_ALIGN := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_USE_VENDOR_CAMERA_EXT := true
 TARGET_USES_MEDIA_EXTENSIONS := true
+TARGET_PROCESS_SDK_VERSION_OVERRIDE := /system/vendor/bin/mm-qcamera-daemon=23
 
 # DT2W
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
