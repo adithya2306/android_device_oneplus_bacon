@@ -161,9 +161,6 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Lineage Hardware
 JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
 
-# NFC
-BOARD_NFC_CHIPSET := pn547
-
 # Power
 TARGET_HAS_LEGACY_POWER_STATS := true
 TARGET_HAS_NO_WLAN_STATS := true

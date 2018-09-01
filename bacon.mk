@@ -174,10 +174,8 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.0-impl \
     com.android.nfc_extras \
     NfcNci \
-    nfc_nci.bacon \
     Tag
 
 ifeq ($(TARGET_BUILD_VARIANT),user)
