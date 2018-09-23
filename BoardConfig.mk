@@ -16,7 +16,7 @@
 #
 
 # inherit from Oppo common
--include device/oppo/common/BoardConfigCommon.mk
+include device/oppo/common/BoardConfigCommon.mk
 
 PLATFORM_PATH := device/oneplus/bacon
 
@@ -32,6 +32,10 @@ TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 QCOM_BOARD_PLATFORMS += msm8974
+QCOM_HARDWARE_VARIANT := msm8974
+BOARD_USES_ADRENO := true
+TARGET_USES_QCOM_BSP := true
+TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 # Architecture
 TARGET_ARCH := arm
@@ -71,7 +75,8 @@ AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := true
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
-UDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
+TARGET_USES_QCOM_MM_AUDIO := true
 USE_XML_AUDIO_POLICY_CONF := 1
 
 # Binder
@@ -179,10 +184,6 @@ TARGET_HAS_LEGACY_POWER_STATS := true
 TARGET_HAS_NO_WIFI_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
 
-# Inherit from QC proprietary
-ifneq ($(QCPATH),)
--include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
-
 # Bluetooth
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
@@ -194,4 +195,4 @@ endif
 
 DEVICE_MANIFEST_FILE := device/oneplus/bacon/manifest.xml
 
--include vendor/oneplus/bacon/BoardConfigVendor.mk
+include vendor/oneplus/bacon/BoardConfigVendor.mk

@@ -14,10 +14,6 @@
 # limitations under the License.
 #
 
-ifneq ($(QCPATH),)
-$(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
-endif
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -37,6 +33,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.first_api_level=19
 
+# APN
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb \
@@ -52,7 +52,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/vendor/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/vendor/etc/audio_policy_configuration.xml \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/vendor/etc/mixer_paths.xml
-
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -82,6 +81,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/vendor/etc/usb_audio_policy_configuration.xml
 
 # Boot animation
+TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
@@ -91,7 +91,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service.bacon \
     camera.msm8974 \
-    Snap-bacon
+    Camera2 #Snap-bacon
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -147,6 +147,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8974 \
     memtrack.msm8974 \
     liboverlay \
+    librsjni \
     libboringssl-compat
 
 # GNSS HAL
@@ -237,7 +238,16 @@ PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     libnl_2 \
     libtinyxml \
-    libxml2
+    libxml2 \
+    libprotobuf-cpp-full
+
+# Misc props
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    keyguard.no_require_sim=true \
+    media.recorder.show_manufacturer_and_model=true \
+    net.tethering.noprovisioning=true \
+    ro.build.selinux=1 \
+    ro.storage_manager.enabled=true
 
 # Music
 PRODUCT_PACKAGES += \
@@ -362,11 +372,7 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service
 
 # Call the proprietary setup
-$(call inherit-product-if-exists, vendor/oneplus/bacon/bacon-vendor.mk)
-
-ifneq ($(QCPATH),)
-$(call inherit-product-if-exists, $(QCPATH)/prebuilt_HY11/target/product/msm8974/prebuilt.mk)
-endif
+$(call inherit-product, vendor/oneplus/bacon/bacon-vendor.mk)
 
 # Doze
 PRODUCT_PACKAGES += \
