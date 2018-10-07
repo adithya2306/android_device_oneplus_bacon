@@ -117,7 +117,7 @@ ro.gps.agps_provider=1
 
 # Media
 media.aac_51_output_enabled=true
-mm.enable.smoothstreaming=true
+mm.enable.sec.smoothstreaming=true
 persist.media.treble_omx=false
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
