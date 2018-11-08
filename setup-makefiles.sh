@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +18,51 @@
 
 set -e
 
-export DEVICE=bacon
-export DEVICE_COMMON=msm8974-common
-export VENDOR=oneplus
+INITIAL_COPYRIGHT_YEAR=2014
 
-./../../oppo/msm8974-common/setup-makefiles.sh $@
+# Load extract_utils and do some sanity checks
+MY_DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
+
+LINEAGE_ROOT="$MY_DIR"/../../..
+
+HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
+if [ ! -f "$HELPER" ]; then
+    echo "Unable to find helper script at $HELPER"
+    exit 1
+fi
+. "$HELPER"
+
+DEVICE=bacon
+DEVICE_COMMON=msm8974-common
+DEVICE_VENDOR=oneplus
+VENDOR_COMMON=oppo
+
+# Initialize the helper for common device
+setup_vendor "$DEVICE_COMMON" "$VENDOR_COMMON" "$LINEAGE_ROOT" true
+
+# Copyright headers and common guards
+write_headers "bacon find7 n3"
+
+write_makefiles "$MY_DIR"/proprietary-files.txt
+
+# Blobs for TWRP data decryption
+cat << EOF >> "$BOARDMK"
+ifeq (\$(WITH_TWRP),true)
+TARGET_RECOVERY_DEVICE_DIRS += vendor/$VENDOR_COMMON/$DEVICE_COMMON/proprietary
+endif
+EOF
+
+write_footers
+
+# Reinitialize the helper for device
+setup_vendor "$DEVICE" "$DEVICE_VENDOR" "$LINEAGE_ROOT"
+
+# Copyright headers and guards
+write_headers
+
+write_makefiles "$MY_DIR"/device-proprietary-files.txt
+write_makefiles "$MY_DIR"/../../$DEVICE_VENDOR/$DEVICE/device-proprietary-files.txt
+
+# Finish
+write_footers
