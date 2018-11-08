@@ -116,6 +116,10 @@ DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/vendor/etc/sec_config
 
+# Keyhandler
+PRODUCT_PACKAGES += \
+    ConfigPanel
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
@@ -223,6 +227,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
+
+# Recovery
+PRODUCT_PACKAGES += \
+    librecovery_updater_oppo
 
 # Seccomp
 PRODUCT_COPY_FILES += \
