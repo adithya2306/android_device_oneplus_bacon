@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# inherit from OPPO common
-include device/oppo/common/BoardConfigCommon.mk
-
 DEVICE_PATH := device/oneplus/bacon
 
 # Assert
