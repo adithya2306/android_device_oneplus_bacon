@@ -45,6 +45,7 @@ dalvik.vm.verify-bytecode=false
 persist.sys.purgeable_assets=1
 
 # Display
+debug.hwui.renderer=opengl
 debug.hwui.use_buffer_age=false
 persist.hwc.mdpcomp.enable=true
 ro.opengles.version=196608
