@@ -407,7 +407,7 @@ service devstart_sh /system/etc/init.qcom.devstart.sh
 service charger /charger
     class charger
     critical
-    seclabel u:r:charger:s0
+    seclabel u:r:healthd:s0
 
 service hvdcp /system/bin/hvdcp
     class core
