@@ -125,6 +125,8 @@ ro.config.vc_call_vol_steps=7
 # Perf
 ro.qualcomm.perf.cores_online=2
 ro.vendor.extension_library=libqti-perfd-client.so
+ro.vendor.qti.am.reschedule_service=true
+ro.vendor.qti.sys.fw.bservice_enable=true
 
 # Radio
 persist.data.netmgrd.qos.enable=true
