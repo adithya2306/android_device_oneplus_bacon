@@ -302,6 +302,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine-8974.conf
 
+# Touch HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.bacon
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
