@@ -28,3 +28,7 @@
 
 # audiod
 /system/bin/audiod                            u:object_r:audiod_exec:s0
+
+# Lights
+/sys/devices/[a-z0-9]+\.i2c/i2c-[0-9]/[0-9]-[a-z0-9]+/leds(/.*)?  u:object_r:sysfs_leds:s0
+/sys/devices/[a-z0-9]+\.i2c/i2c-[0-9]/[0-9]-[a-z0-9]+/blink       u:object_r:sysfs_leds:s0
