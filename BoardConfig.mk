@@ -177,6 +177,7 @@ TARGET_USES_INTERACTION_BOOST := true
 
 # Radio
 TARGET_RIL_VARIANT := caf
+TARGET_USES_OLD_MNC_FORMAT := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.recovery
