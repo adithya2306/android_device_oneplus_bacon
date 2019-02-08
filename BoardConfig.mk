@@ -20,15 +20,13 @@
 
 PLATFORM_PATH := device/oneplus/bacon
 
-# Include path
-TARGET_SPECIFIC_HEADER_PATH := $(PLATFORM_PATH)/include
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Platform
+BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 QCOM_BOARD_PLATFORMS += msm8974
@@ -42,25 +40,6 @@ TARGET_CPU_VARIANT := krait
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= $(PLATFORM_PATH)/board-info.txt
-
-# Kernel
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
-BOARD_KERNEL_IMAGE_NAME := zImage
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
-BOARD_DTBTOOL_ARGS := -2
-TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := bacon_defconfig
-TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
-PRODUCT_VENDOR_KERNEL_HEADERS :=  $(DEVICE_PATH)/kernel-headers
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
-
-# Assert
 TARGET_OTA_ASSERT_DEVICE := bacon,A0001
 
 # Audio
@@ -70,7 +49,7 @@ AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := true
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
-UDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
 USE_CUSTOM_AUDIO_POLICY := 1
 USE_XML_AUDIO_POLICY_CONF := 1
 
@@ -82,6 +61,7 @@ BLUETOOTH_HCI_USE_MCT := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(PLATFORM_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
+FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 QCOM_BT_USE_SMD_TTY := true
 
 # Camera
@@ -93,7 +73,7 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 # DT2W
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 
-# Enable dexpreopt to speed boot time
+# Dexpreopt
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
     ifeq ($(WITH_DEXPREOPT),)
@@ -128,11 +108,32 @@ TARGET_USERIMAGES_USE_F2FS := true
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
+TARGET_USES_HWC2 := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_USES_HWC2 := true
+
+# HIDL
+DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
+
+# Kernel
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := zImage
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_SEPARATED_DT := true
+
+BOARD_DTBTOOL_ARGS := -2
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
+TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_CONFIG := bacon_defconfig
+TARGET_KERNEL_SOURCE := kernel/oneplus/msm8974
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
+
+# Kernel Headers
+PRODUCT_VENDOR_KERNEL_HEADERS :=  $(DEVICE_PATH)/kernel-headers
 
 # Keymaster
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
@@ -143,8 +144,11 @@ TARGET_PROVIDES_LIBLIGHT := true
 # NFC
 BOARD_NFC_CHIPSET := pn547
 
-# QCOM hardware
-BOARD_USES_QCOM_HARDWARE := true
+# Power
+TARGET_HAS_LEGACY_POWER_STATS := true
+TARGET_HAS_NO_WIFI_STATS := true
+TARGET_POWERHAL_VARIANT := qcom
+TARGET_USES_INTERACTION_BOOST := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.recovery
@@ -152,38 +156,33 @@ TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.recovery
 # RPC
 TARGET_NO_RPC := true
 
-# Sepolicy
+# SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(PLATFORM_PATH)/sepolicy
 
-# Snapdragon LLVM
-TARGET_USE_SDCLANG := true
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so \
+    /system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so
 
-# Wifi
-BOARD_HAS_QCOM_WLAN              := true
-BOARD_HAS_QCOM_WLAN_SDK          := true
-BOARD_WLAN_DEVICE                := qcwcn
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+# Shipping API level (KitKat)
+PRODUCT_SHIPPING_API_LEVEL := 19
+
+# Wi-Fi
+BOARD_HAS_QCOM_WLAN := true
+BOARD_HAS_QCOM_WLAN_SDK := true
+TARGET_USES_WCNSS_CTRL := true
+TARGET_USES_QCOM_WCNSS_QMI := true
+TARGET_USES_WCNSS_MAC_ADDR_REV := true
+TARGET_WCNSS_MAC_PREFIX := e8bba8
+
+BOARD_WLAN_DEVICE := qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_qcwcn
-TARGET_USES_WCNSS_CTRL           := true
-TARGET_USES_QCOM_WCNSS_QMI       := true
-TARGET_USES_WCNSS_MAC_ADDR_REV   := true
-TARGET_WCNSS_MAC_PREFIX          := e8bba8
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 
-# QCOM PowerHAL
-TARGET_POWERHAL_VARIANT := qcom
-
-# Power
-TARGET_HAS_LEGACY_POWER_STATS := true
-TARGET_HAS_NO_WIFI_STATS := true
-TARGET_USES_INTERACTION_BOOST := true
-
-DEVICE_MANIFEST_FILE := device/oneplus/bacon/manifest.xml
-
--include vendor/oneplus/bacon/BoardConfigVendor.mk
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_AP := "ap"
+WPA_SUPPLICANT_VERSION := VER_0_8_X
