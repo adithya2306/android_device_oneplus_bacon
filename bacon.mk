@@ -59,7 +59,8 @@ PRODUCT_PACKAGES += \
     libbt-vendor
 
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl.bacon
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
