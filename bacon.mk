@@ -72,6 +72,7 @@ PRODUCT_PACKAGES += \
     camera.msm8974 \
     libboringssl-compat \
     libbson \
+    Gallery2 \
     Snap
 
 PRODUCT_PACKAGES += \
