@@ -164,6 +164,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0-impl
 
+# Init
+PRODUCT_PACKAGES += \
+    libinit_bacon
+
 # IPC router config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
