@@ -139,6 +139,10 @@ DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_bacon
+TARGET_RECOVERY_DEVICE_MODULES := libinit_bacon
+
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 pm.sleep_mode=1
