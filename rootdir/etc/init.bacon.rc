@@ -87,6 +87,9 @@ on boot
     chown system system /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
 
+    # Enable DT2W
+    write /proc/touchpanel/double_tap_enable 1
+
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
