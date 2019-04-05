@@ -125,8 +125,8 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Doze
-PRODUCT_PACKAGES += \
-    OnePlusDoze
+#PRODUCT_PACKAGES += \
+#    OnePlusDoze
 
 # DRM
 PRODUCT_PACKAGES += \
