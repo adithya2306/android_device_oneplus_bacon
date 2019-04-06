@@ -98,7 +98,7 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
 
 # DT2W
-TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
+#TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
