@@ -56,6 +56,8 @@ sys.use_fifo_ui=1
 
 # Media
 debug.stagefright.ccodec=0
+debug.stagefright.omx_default_rank=0
+debug.stagefright.omx_default_rank.sw-audio=1
 mm.enable.sec.smoothstreaming=true
 media.aac_51_output_enabled=true
 
