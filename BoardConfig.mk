@@ -122,7 +122,6 @@ BUILD_BROKEN_PHONY_TARGETS := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 
 # Exclude serif fonts for saving system.img size.
 EXCLUDE_SERIF_FONTS := true
