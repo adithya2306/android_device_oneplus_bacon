@@ -310,3 +310,6 @@ PRODUCT_PACKAGES += \
 
 # Call the proprietary setup
 $(call inherit-product, vendor/oneplus/bacon/bacon-vendor.mk)
+
+# Inherit from oneplus/common
+$(call inherit-product, device/oneplus/common/common.mk)
