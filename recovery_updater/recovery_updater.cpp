@@ -190,4 +190,3 @@ Value * VerifyTrustZoneFn(const char *name, State *state, const std::vector<std:
 void Register_librecovery_updater_oppo() {
     RegisterFunction("oppo.verify_trustzone", VerifyTrustZoneFn);
 }
-
