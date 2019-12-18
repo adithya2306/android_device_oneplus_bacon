@@ -132,7 +132,6 @@ PRODUCT_PACKAGES += \
     memtrack.msm8974 \
     libgenlock \
     liboverlay \
-    libboringssl-compat
 
 # GPS
 PRODUCT_PACKAGES += \
